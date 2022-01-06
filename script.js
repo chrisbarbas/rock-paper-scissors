@@ -10,7 +10,7 @@ function computerPlay() {
     }
 }
 
-//compares computers roll with player's answer, increases score
+//compares computer's roll with player's answer, increases score
 function playRound(playerSelection, computerSelection) {
     console.log(`Player selected ${playerSelection}`);
     console.log(`Computer selected ${computerSelection}`);
@@ -40,7 +40,7 @@ function playRound(playerSelection, computerSelection) {
 //runs playRound until first to 5 + prompts user
 function game() {
     while (playerScore < 5 && computerScore < 5) {
-        const playerSelection = prompt("Pick a move").toLowerCase();
+        const playerSelection = prompt('Type rock paper or scissors', 'rock').toLowerCase();
         const computerSelection = computerPlay();
         playRound(playerSelection, computerSelection);
         console.log(`Player's score: ${playerScore}`);
