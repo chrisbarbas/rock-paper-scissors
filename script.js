@@ -1,4 +1,17 @@
-//rolls for computer
+//global variables for the score of game
+let playerScore = 0
+let computerScore = 0
+//variables for text that appears in the DOM
+const winner = document.querySelector('#winner');
+const selected = document.querySelector('#selected');
+const score = document.querySelector('#score');
+const gameWinner = document.querySelector('#gameWinner');
+//variables for the 3 buttons
+const rock = document.querySelector('#rock')
+const paper = document.querySelector('#paper')
+const scissors = document.querySelector('#scissors')
+
+//rolls for the computer
 function computerPlay() {
     let random = Math.floor(Math.random() * 3) + 1;
     if (random === 1) {
@@ -10,50 +23,63 @@ function computerPlay() {
     }
 }
 
-//compares computer's roll with player's answer, increases score
+// compares computer's roll with player's answer, increases score
 function playRound(playerSelection, computerSelection) {
-    console.log(`Player selected ${playerSelection}`);
-    console.log(`Computer selected ${computerSelection}`);
     if (playerSelection == computerSelection) {
-        console.log("It's a tie")
+        winner.textContent = 'Tie';
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-        console.log('You Win! Rock beats Scissors')
+        winner.textContent = 'You win!';
         playerScore++;
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        console.log('You Lose! Paper beats Rock')
+        winner.textContent = 'Computer wins';
         computerScore++;
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        console.log('You Win! Paper beats Rock')
+        winner.textContent = 'You win!';
         playerScore++;
     } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-        console.log('You Lose! Scissors beats Paper')
+        winner.textContent = 'Computer wins';
         computerScore++;
     } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        console.log('You Win! Scissors beats Paper')
+        winner.textContent = 'You win!';
         playerScore++;
     } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-        console.log('You Lose! Rock beats Scissors')
+        winner.textContent = 'Computer wins';
         computerScore++;
     }
 }
 
-//runs playRound until first to 5 + prompts user
-function game() {
-    while (playerScore < 5 && computerScore < 5) {
-        const playerSelection = prompt('Type rock paper or scissors', 'rock').toLowerCase();
-        const computerSelection = computerPlay();
-        playRound(playerSelection, computerSelection);
-        console.log(`Player's score: ${playerScore}`);
-        console.log(`Computer's score: ${computerScore}`);
-        //first to 5 wins
-        if (playerScore === 5) {
-            console.log('PLAYER WON!!!')
-        } else if (computerScore === 5) {
-            console.log('COMPUTER WON!!!')
-        }
+function gameOver() {
+    return playerScore === 5 || computerScore === 5
+}
+
+//used inside of gameOver()
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    gameWinner.textContent = '';
+}
+
+function determineWinner() {
+    if (playerScore === 5) {
+        gameWinner.textContent = 'You have won the game!';
+    } else if (computerScore === 5) {
+        gameWinner.textContent = 'Computer has won the game';
     }
 }
 
-let playerScore = 0;
-let computerScore = 0;
-game();
+//sends click to game()
+rock.addEventListener('click', () => game('rock'))
+paper.addEventListener('click', () => game('paper'))
+scissors.addEventListener('click', () => game('scissors'))
+
+//combines everything together
+function game(playerSelection) {
+    if (gameOver()) {
+        resetGame();
+    }
+    const computerSelection = computerPlay()
+    playRound(playerSelection, computerSelection)
+    selected.textContent = `Player: ${playerSelection} Computer: ${computerSelection}`;
+    score.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+    determineWinner();
+}
