@@ -101,22 +101,22 @@ p+#gameWinner {
 /* small size */
 @media only screen and (max-width: 650px) {
     #container h1 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     #buttons {
         flex-direction: column;
         gap: 0;
-        max-width: 30%;
+        max-width: 38%;
 
     }
 
     p {
-        font-size: 1rem;
-        margin-bottom: -10px;
+        font-size: 1.1rem;
+        margin-bottom: -8px;
     }
 
     p + #gameWinner {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 }
