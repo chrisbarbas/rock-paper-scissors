@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    height: 100vh;
+    font-family: Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #363636;
+}
+
+#container h1 {
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: #ffa319;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#buttons .btn {
+    background-color: #363636;
+    border: none;
+    filter: grayscale(60%);
+    transition: all 0.4s ease;
+}
+
+#buttons .btn:hover {
+    filter: grayscale(0%);
+    filter: gray;
+    -webkit-filter: grayscale(0%);
+    filter: none;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+#buttons img {
+    max-width: 300px;
+}
+
+div .text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+p {
+    color: #FFF;
+    font-size: 1.5rem;
+    margin-bottom: -5px;
+}
+
+p + #gameWinner {
+    color: #ffa319;
+    font-weight: 800;
+    font-size: 4rem;
+}
+
+.footer {
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 30px;
+    color: #BBB;
+    background-color: #303030;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}
+
+/* medium size */
+@media only screen and (max-width: 1000px) {
+    #container h1 {
+        font-size: 2rem;
+    }
+
+    #buttons {
+        gap: 15px;
+    }
+
+    #buttons img {
+        width: 90%;
+    }
+
+    p + #gameWinner {
+        font-size: 3rem;
+    }
+}
+
+/* small size */
+@media only screen and (max-width: 650px) {
+    #container h1 {
+        font-size: 1.2rem;
+    }
+
+    #buttons {
+        flex-direction: column;
+        gap: 0;
+        max-width: 38%;
+
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin-bottom: -8px;
+    }
+
+    p + #gameWinner {
+        font-size: 1.6rem;
+    }
+}
